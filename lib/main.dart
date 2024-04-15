@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:calculator/screens/calculator_screen.dart';
-import 'package:calculator/controllers/calculator_controller.dart';
 
 void main() {
   runApp(CalculatorApp());
@@ -9,7 +8,6 @@ void main() {
 class CalculatorApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    CalculatorController controller = CalculatorController();
 
 
     return MaterialApp(
@@ -17,7 +15,7 @@ class CalculatorApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: CalculatorScreen(controller),
+      home: CalculatorScreen(),
     );
   }
 }

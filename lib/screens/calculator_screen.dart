@@ -1,13 +1,14 @@
-// calculator_screen.dart
-
 import 'package:flutter/material.dart';
-import 'package:calculator/controllers/calculator_controller.dart';
-import 'package:calculator/widgets/calculator_button.dart';
+import '../controllers/calculator_controller.dart';
+import '../widgets/calculator_button.dart';
 
-class CalculatorScreen extends StatelessWidget {
-  final CalculatorController controller;
+class CalculatorScreen extends StatefulWidget {
+  @override
+  _CalculatorScreenState createState() => _CalculatorScreenState();
+}
 
-  CalculatorScreen(this.controller);
+class _CalculatorScreenState extends State<CalculatorScreen> {
+  CalculatorController controller = CalculatorController();
 
   @override
   Widget build(BuildContext context) {
@@ -20,9 +21,14 @@ class CalculatorScreen extends StatelessWidget {
           Container(
             padding: EdgeInsets.all(16.0),
             alignment: Alignment.centerRight,
-            child: Text(
-              controller.display,
-              style: TextStyle(fontSize: 40.0),
+            child: StreamBuilder<String>(
+              stream: controller.displayStream,
+              builder: (context, snapshot) {
+                return Text(
+                  snapshot.data ?? '0',
+                  style: TextStyle(fontSize: 40.0),
+                );
+              },
             ),
           ),
           Expanded(
@@ -121,7 +127,9 @@ class CalculatorScreen extends StatelessWidget {
                     children: <Widget>[
                       CalculatorButton(
                         text: '=',
-                        onPressed: () => controller.calculateResult(),
+                        onPressed: () {
+                          controller.inputEquals();
+                        },
                       ),
                     ],
                   ),
