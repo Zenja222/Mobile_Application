@@ -14,6 +14,15 @@ class _CalculatorScreenState extends State<CalculatorScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        actions: [
+          GestureDetector(
+            onTap: () => Navigator.of(context).pushNamed('/converter'),
+            child: Padding(
+              padding: const EdgeInsets.only(right: 10, bottom: 12, top: 12),
+              child: Icon(Icons.calculate_outlined),
+            ),
+          )
+        ],
         title: Text('Calculator'),
       ),
       body: Column(
@@ -127,9 +136,7 @@ class _CalculatorScreenState extends State<CalculatorScreen> {
                     children: <Widget>[
                       CalculatorButton(
                         text: '=',
-                        onPressed: () {
-                          controller.inputEquals();
-                        },
+                        onPressed: () => controller.inputEquals(),
                       ),
                     ],
                   ),

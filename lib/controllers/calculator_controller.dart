@@ -73,6 +73,12 @@ class CalculatorController {
     _updateDisplay();
   }
 
+  void converterKmMi() {
+    _num1 = double.parse(_display);
+    _display = (_num1 * 0.6214).toString();
+    _updateDisplay();
+  }
+
   void calculateResult() {
     switch (_operand) {
       case '+':
